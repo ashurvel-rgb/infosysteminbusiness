@@ -1,0 +1,10 @@
+digraph C {
+  graph [rankdir=TB, bgcolor="white", pad=0.2, nodesep=0.35, ranksep=0.45];
+  node [shape=record, style="filled", fontname="Arial", fontsize=10,
+        color="#2F5597", fillcolor="#F7FBFF"];
+
+  calculator [label="{OrderCalculator|+ MIN_QUANTITY : int = 1\l+ MAX_QUANTITY : int = 10000\l+ MAX_UNIT_PRICE : double = 5000000\l+ MAX_DISCOUNT_PERCENT : double = 15\l+ MIN_VAT_PERCENT : double = 0\l+ MAX_VAT_PERCENT : double = 100\l|+ main(String[]) : void\l+ isValid(int, double, double) : boolean\l+ isValidVat(double) : boolean\l+ calculateBase(int, double) : double\l+ applyDiscount(double, double) : double\l+ calculateVat(double, double) : double\l+ calculateTotal(int, double, double, double) : double\l- readInt(Scanner, String) : int\l- readDouble(Scanner, String) : double\l- readLine(Scanner) : String\l}"];
+  selfcheck [label="{SelfCheck|- passed : int\l- failed : int\l|+ main(String[]) : void\l- check(String, boolean) : void\l- checkThrows(String, Runnable) : void\l- closeTo(double, double) : boolean\l}", fillcolor="#F3F6FA"];
+
+  selfcheck -> calculator [label="тестирует", style=dashed, color="#666666", arrowhead=open];
+}

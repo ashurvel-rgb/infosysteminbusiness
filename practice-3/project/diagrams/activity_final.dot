@@ -1,0 +1,26 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="white", pad=0.2, nodesep=0.30, ranksep=0.40];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=11,
+        color="#2F5597", fillcolor="#EAF2F8", margin="0.12,0.08"];
+  edge [fontname="Arial", fontsize=9, color="#555555"];
+
+  start [label="Начало", shape=oval, fillcolor="#E2F0D9", color="#548235"];
+  input [label="Считать количество, цену, скидку и ставку НДС",
+         shape=parallelogram, fillcolor="#E4DFEC", color="#7030A0"];
+  validate [label="A1: наличие и непустота строк, формат int/double;\nDouble.isFinite для double; 1 <= количество <= 10000;\n0 < цена <= 5000000; 0 <= скидка <= 15; 0 <= НДС <= 100"];
+  valid [label="Все значения корректны?", shape=diamond,
+         fillcolor="#FFF2CC", color="#BF9000"];
+  base [label="base = quantity * unitPrice"];
+  discount [label="A2: discounted = applyDiscount(base, discountPercent);\ndiscountAmount = base - discounted"];
+  vat [label="vat = discounted * vatPercent / 100"];
+  total [label="total = discounted + vat"];
+  output [label="Вывести base, скидку, НДС и total\nс двумя знаками после запятой"];
+  error [label="Вывести конкретную причину ошибки\nи не выполнять расчёт"];
+  end [label="Завершение", shape=oval, fillcolor="#FCE4D6", color="#C65911"];
+
+  start -> input -> validate -> valid;
+  valid -> base [label="да"];
+  valid -> error [label="нет"];
+  base -> discount -> vat -> total -> output -> end;
+  error -> end;
+}
